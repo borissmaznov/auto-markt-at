@@ -1,0 +1,32 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "auto-markt-at"
+version = "0.1.0"
+description = "New car registrations in Austria 2021-2025 from EEA open data: SQL analytics, MCP server and market report"
+readme = "README.md"
+requires-python = ">=3.12"
+authors = [{ name = "Boris Smaznov" }]
+dependencies = ["httpx>=0.27", "mcp>=2.2"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "ruff>=0.6"]
+
+[project.scripts]
+automarkt = "automarkt.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/automarkt"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 120
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]

@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 350" width="700" height="350" font-family="Segoe UI, Helvetica, Arial, sans-serif">
+<style>text{fill:#24292f}.muted{fill:#57606a}@media (prefers-color-scheme: dark){text{fill:#e6edf3}.muted{fill:#9da7b3}}</style>
+<text x="0" y="20" font-size="15" font-weight="600">E-Auto-Neuzulassungen 2025*: Top 10 Marken</text>
+<text x="140" y="56" font-size="13" text-anchor="end">BMW</text>
+<rect x="150" y="40" width="460" height="22" rx="3" fill="#9aa5b1"/>
+<text x="618" y="56" font-size="12" class="muted">6.662 · 11,0 %</text>
+<text x="140" y="86" font-size="13" text-anchor="end">Volkswagen</text>
+<rect x="150" y="70" width="454" height="22" rx="3" fill="#9aa5b1"/>
+<text x="612" y="86" font-size="12" class="muted">6.568 · 10,8 %</text>
+<text x="140" y="116" font-size="13" text-anchor="end">Tesla</text>
+<rect x="150" y="100" width="428" height="22" rx="3" fill="#9aa5b1"/>
+<text x="586" y="116" font-size="12" class="muted">6.205 · 10,2 %</text>
+<text x="140" y="146" font-size="13" text-anchor="end">Skoda</text>
+<rect x="150" y="130" width="425" height="22" rx="3" fill="#9aa5b1"/>
+<text x="583" y="146" font-size="12" class="muted">6.159 · 10,1 %</text>
+<text x="140" y="176" font-size="13" text-anchor="end">BYD</text>
+<rect x="150" y="160" width="363" height="22" rx="3" fill="#0e7c86"/>
+<text x="521" y="176" font-size="12" class="muted">5.258 · 8,7 %</text>
+<text x="140" y="206" font-size="13" text-anchor="end">Audi</text>
+<rect x="150" y="190" width="278" height="22" rx="3" fill="#9aa5b1"/>
+<text x="436" y="206" font-size="12" class="muted">4.023 · 6,6 %</text>
+<text x="140" y="236" font-size="13" text-anchor="end">Renault</text>
+<rect x="150" y="220" width="219" height="22" rx="3" fill="#9aa5b1"/>
+<text x="377" y="236" font-size="12" class="muted">3.174 · 5,2 %</text>
+<text x="140" y="266" font-size="13" text-anchor="end">Cupra</text>
+<rect x="150" y="250" width="186" height="22" rx="3" fill="#9aa5b1"/>
+<text x="344" y="266" font-size="12" class="muted">2.697 · 4,4 %</text>
+<text x="140" y="296" font-size="13" text-anchor="end">Hyundai</text>
+<rect x="150" y="280" width="182" height="22" rx="3" fill="#0e7c86"/>
+<text x="340" y="296" font-size="12" class="muted">2.635 · 4,3 %</text>
+<text x="140" y="326" font-size="13" text-anchor="end">Ford</text>
+<rect x="150" y="310" width="181" height="22" rx="3" fill="#9aa5b1"/>
+<text x="339" y="326" font-size="12" class="muted">2.616 · 4,3 %</text>
+</svg>
