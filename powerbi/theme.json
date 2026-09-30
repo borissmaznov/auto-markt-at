@@ -1,0 +1,10 @@
+{
+  "name": "Auto-Markt Österreich",
+  "dataColors": ["#0E7C86", "#4F7CAC", "#D4A03A", "#9AA5B1", "#57606A", "#7DB7BD", "#B3654A", "#24292F"],
+  "foreground": "#24292F",
+  "background": "#FFFFFF",
+  "tableAccent": "#0E7C86",
+  "good": "#0E7C86",
+  "neutral": "#9AA5B1",
+  "bad": "#B3654A"
+}

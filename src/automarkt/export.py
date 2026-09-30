@@ -13,6 +13,8 @@ from pathlib import Path
 from . import FOCUS_MAKES
 from .eea import PROVISIONAL
 
+# Column names repeat only for the join keys: Power BI auto-detects relationships by column name, and two
+# plain "label" columns would link dim_year to dim_drive.
 DRIVES = [  # drive, German label, sort order in visuals
     ("BEV", "E-Auto", 1),
     ("PHEV", "Plug-in-Hybrid", 2),
@@ -55,12 +57,12 @@ def export_star(conn: sqlite3.Connection, out_dir: str | Path = "powerbi/data",
     makes = [r[0] for r in conn.execute("SELECT DISTINCT make FROM registrations ORDER BY make")]
     counts["dim_make"] = _write(
         out / "dim_make.csv", ["make", "brand", "focus_brand"],
-        ([m, m if len(m) <= 3 else m.title(), int(m in focus)] for m in makes),
+        ([m, m if len(m) <= 3 else m.title(), "ja" if m in focus else "nein"] for m in makes),
     )
     years = [r[0] for r in conn.execute("SELECT DISTINCT year FROM registrations ORDER BY year")]
     counts["dim_year"] = _write(
-        out / "dim_year.csv", ["year", "label", "provisional"],
+        out / "dim_year.csv", ["year", "year_label", "provisional"],
         ([y, f"{y}*" if y in PROVISIONAL else str(y), int(y in PROVISIONAL)] for y in years),
     )
-    counts["dim_drive"] = _write(out / "dim_drive.csv", ["drive", "label", "sort"], DRIVES)
+    counts["dim_drive"] = _write(out / "dim_drive.csv", ["drive", "drive_label", "drive_sort"], DRIVES)
     return counts

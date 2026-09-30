@@ -48,7 +48,8 @@ Die bereinigten Daten liegen zusätzlich als Sternschema unter [powerbi/data](po
 Fokusmarken), `dim_year` (vorläufige Jahre markiert) und `dim_drive`.
 [powerbi/load.pq](powerbi/load.pq) lädt sie per Power Query direkt aus diesem Repository;
 [powerbi/measures.dax](powerbi/measures.dax) enthält die Measures: E-Anteil, Wachstum ggü. Vorjahr, Marktanteil,
-Rang und den verbrauchsgewichteten Durchschnittsverbrauch. `automarkt export-powerbi` erzeugt die Dateien neu.
+Rang und den verbrauchsgewichteten Durchschnittsverbrauch; [powerbi/theme.json](powerbi/theme.json) übernimmt die
+Farben des Berichts. `automarkt export-powerbi` erzeugt die Dateien neu.
 
 ## Datenqualität
 
@@ -81,7 +82,7 @@ claude mcp add auto-markt -- automarkt --db C:/pfad/zu/data/automarkt.db mcp
 
 ## Tests
 
-`pytest` (25 Tests: Bereinigung, SQL-Analysen, Paginierung der API mit gemocktem HTTP, Bericht, MCP, Export) und
+`pytest` (26 Tests: Bereinigung, SQL-Analysen, Paginierung der API mit gemocktem HTTP, Bericht, MCP, Export) und
 `ruff check .`; beides läuft in der CI bei jedem Push.
 
 ## Quelle und Lizenz

@@ -14,9 +14,9 @@ let
         fact_registrations = {{"year", Int64.Type}, {"make", type text}, {"model", type text}, {"drive", type text},
                               {"fuel", type text}, {"regs", Int64.Type}, {"co2_g_km", type number},
                               {"power_kw", type number}, {"mass_kg", type number}, {"consumption_wh_km", type number}},
-        dim_make = {{"make", type text}, {"brand", type text}, {"focus_brand", Int64.Type}},
-        dim_year = {{"year", Int64.Type}, {"label", type text}, {"provisional", Int64.Type}},
-        dim_drive = {{"drive", type text}, {"label", type text}, {"sort", Int64.Type}}
+        dim_make = {{"make", type text}, {"brand", type text}, {"focus_brand", type text}},
+        dim_year = {{"year", Int64.Type}, {"year_label", type text}, {"provisional", Int64.Type}},
+        dim_drive = {{"drive", type text}, {"drive_label", type text}, {"drive_sort", Int64.Type}}
     ],
     Tabelle = "fact_registrations",
     Ergebnis = Table.TransformColumnTypes(Laden(Tabelle), Record.Field(Typen, Tabelle), "en-US")

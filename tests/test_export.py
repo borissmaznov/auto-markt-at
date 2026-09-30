@@ -22,8 +22,19 @@ def test_star_schema_files(conn, tmp_path):
 def test_dimensions_for_filters(conn, tmp_path):
     export_star(conn, tmp_path)
     makes = {r["make"]: r for r in read(tmp_path / "dim_make.csv")}
-    assert (makes["BYD"]["brand"], makes["BYD"]["focus_brand"]) == ("BYD", "1")
-    assert (makes["HYUNDAI"]["brand"], makes["TESLA"]["focus_brand"]) == ("Hyundai", "0")
+    assert (makes["BYD"]["brand"], makes["BYD"]["focus_brand"]) == ("BYD", "ja")
+    assert (makes["HYUNDAI"]["brand"], makes["TESLA"]["focus_brand"]) == ("Hyundai", "nein")
     years = {r["year"]: r for r in read(tmp_path / "dim_year.csv")}
-    assert (years["2025"]["label"], years["2025"]["provisional"]) == ("2025*", "1")
+    assert (years["2025"]["year_label"], years["2025"]["provisional"]) == ("2025*", "1")
     assert years["2024"]["provisional"] == "0"
+
+
+def test_only_join_keys_repeat(conn, tmp_path):
+    # Power BI auto-detects relationships by column name, so any other shared name creates a wrong link.
+    export_star(conn, tmp_path)
+    cols = {p.stem: set(p.read_text(encoding="utf-8").splitlines()[0].split(",")) for p in tmp_path.glob("*.csv")}
+    fact = cols.pop("fact_registrations")
+    assert {name: c & fact for name, c in cols.items()} == {"dim_make": {"make"}, "dim_year": {"year"},
+                                                            "dim_drive": {"drive"}}
+    dims = list(cols.values())
+    assert all(not a & b for i, a in enumerate(dims) for b in dims[i + 1:])
