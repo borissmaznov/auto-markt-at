@@ -1,0 +1,37 @@
+// DAX-Measures für das Power-BI-Modell (Tabelle „_Measures“ oder direkt in fact_registrations anlegen).
+// Modell: fact_registrations[year]  -> dim_year[year]   (n:1)
+//         fact_registrations[make]  -> dim_make[make]   (n:1)
+//         fact_registrations[drive] -> dim_drive[drive] (n:1)
+// Kein Datumsfeld: Jahre sind Ganzzahlen, deshalb Vorjahr per year - 1 statt Time Intelligence.
+
+Zulassungen = SUM ( fact_registrations[regs] )
+
+E-Autos =
+CALCULATE ( [Zulassungen], dim_drive[drive] = "BEV" )
+
+E-Anteil =
+DIVIDE ( [E-Autos], [Zulassungen] )
+
+Zulassungen Vorjahr =
+VAR Jahr = SELECTEDVALUE ( dim_year[year] )
+RETURN
+    CALCULATE ( [Zulassungen], REMOVEFILTERS ( dim_year ), dim_year[year] = Jahr - 1 )
+
+Wachstum ggü. Vorjahr =
+DIVIDE ( [Zulassungen] - [Zulassungen Vorjahr], [Zulassungen Vorjahr] )
+
+Marktanteil =
+DIVIDE ( [Zulassungen], CALCULATE ( [Zulassungen], REMOVEFILTERS ( dim_make ) ) )
+
+Rang Marke =
+IF (
+    NOT ISBLANK ( [Zulassungen] ),
+    RANKX ( ALL ( dim_make[brand] ), [Zulassungen], , DESC, DENSE )
+)
+
+Ø Verbrauch Wh/km =
+DIVIDE (
+    SUMX ( FILTER ( fact_registrations, NOT ISBLANK ( fact_registrations[consumption_wh_km] ) ),
+           fact_registrations[consumption_wh_km] * fact_registrations[regs] ),
+    CALCULATE ( [Zulassungen], NOT ISBLANK ( fact_registrations[consumption_wh_km] ) )
+)

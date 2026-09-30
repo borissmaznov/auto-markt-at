@@ -1,0 +1,5 @@
+drive,label,sort
+BEV,E-Auto,1
+PHEV,Plug-in-Hybrid,2
+HEV,Vollhybrid,3
+ICE,Verbrenner,4

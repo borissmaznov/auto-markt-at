@@ -20,6 +20,8 @@ def main(argv: list[str] | None = None) -> None:
     p_fetch.add_argument("--years", type=int, nargs="*", default=list(SOURCES))
     p_report = sub.add_parser("report", help="write report/marktbericht.md and the SVG chart")
     p_report.add_argument("--out", default="report")
+    p_export = sub.add_parser("export-powerbi", help="write the star schema CSVs for Power BI")
+    p_export.add_argument("--out", default="powerbi/data")
     p_show = sub.add_parser("show", help="print one analysis as JSON")
     p_show.add_argument("what", choices=["overview", "brands", "ranking", "models"])
     p_show.add_argument("--year", type=int)
@@ -42,6 +44,10 @@ def main(argv: list[str] | None = None) -> None:
         from .report import build
 
         print(build(conn, args.out))
+    elif args.cmd == "export-powerbi":
+        from .export import export_star
+
+        print(json.dumps(export_star(conn, args.out)))
     elif args.cmd == "show":
         year = args.year or max(analytics.years(conn))
         data = {
