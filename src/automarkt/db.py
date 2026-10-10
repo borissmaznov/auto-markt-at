@@ -26,7 +26,7 @@ SELECT *,
        CASE
            WHEN fuel = 'electric' THEN 'BEV'
            WHEN fuel_mode = 'P' THEN 'PHEV'
-           WHEN fuel_mode = 'H' OR fuel LIKE '%/electric' THEN 'HEV'  -- hybrids (full and mild) often come as petrol + mode H
+           WHEN fuel_mode = 'H' OR fuel LIKE '%/electric' THEN 'HEV'  -- full + mild hybrids: often petrol + mode H
            ELSE 'ICE'
        END AS drive
 FROM registrations;

@@ -4,3 +4,7 @@ __pycache__/
 .pytest_cache/
 .ruff_cache/
 data/*.db
+
+# Power BI Desktop: lokale Einstellungen und Datencache des PBIP-Projekts
+**/.pbi/localSettings.json
+**/.pbi/cache.abf
