@@ -10,7 +10,8 @@ Im Fokus stehen die Importmarken **Hyundai, MG, BYD und Mitsubishi**.
 ## Was die Daten zeigen
 
 - **E-Autos wachsen, Hybride noch schneller.** Der E-Anteil stieg von 13,9 % (2021) auf 21,3 % (2025\*),
-  nach einem Rückgang 2024 auf 17,6 %. Vollhybride legten im selben Zeitraum von 16,2 % auf 29,2 % zu.
+  nach einem Rückgang 2024 auf 17,6 %. Hybride ohne Stecker (Voll- und Mild-Hybride) legten im selben Zeitraum
+  von 16,2 % auf 29,2 % zu.
 - **BYD:** von 1.023 Zulassungen (2023) auf 3.938 (2024) und 6.895 (2025\*). 2025 Platz 5 bei E-Autos
   mit 8,7 % Anteil; der Sealion 7 ist nach dem Tesla Model Y das zweithäufigste neue E-Auto.
 - **MG:** wächst weiter (+36 % 2025\*), aber der E-Anteil fiel von 82 % (2023) auf 8 % (2025\*) –
@@ -59,8 +60,14 @@ Offene Daten sind nie ganz sauber. Was der Code bereinigt:
   wäre 2021 jedes Auto zweimal gezählt.
 - **Markennamen:** Dieselbe Marke erscheint unter mehreren Namen (z. B. „MITSUBISHI MOTORS THAILAND“,
   „MERCEDS-AMG“). Ohne Vereinheitlichung fehlten Mitsubishi 2024 rund 500 Zulassungen.
-- **Hybride:** Viele Vollhybride sind als Benzin mit Kraftstoffmodus „H“ erfasst, nicht als „petrol/electric“.
-  Die Antriebsart wird deshalb an einer Stelle definiert (SQL-View) und überall gleich verwendet.
+- **Hybride:** Viele Hybride sind als Benzin mit Kraftstoffmodus „H“ erfasst, nicht als „petrol/electric“.
+  Die Antriebsart wird deshalb an einer Stelle definiert (SQL-View) und überall gleich verwendet. Die EEA trennt
+  nicht zwischen Voll- und Mild-Hybriden (z. B. VW Golf eTSI, Suzuki Swift), daher heißt die Gruppe
+  „Hybrid (inkl. Mild-Hybrid)“.
+- **Abgleich mit der amtlichen Statistik:** Die Jahressummen liegen knapp unter den Pkw-Neuzulassungen von
+  Statistik Austria: 2024 252.844 statt 253.789 (−0,4 %), 2025 284.427 statt 284.978 (−0,2 %). Die EEA-Daten
+  stammen aus dem CO₂-Monitoring, nicht aus der Zulassungsstatistik; für exakte Markenzahlen ist Statistik Austria
+  die Referenz.
 
 ## Schnellstart
 

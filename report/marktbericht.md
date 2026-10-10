@@ -2,7 +2,7 @@
 
 ## Markt nach Antrieb
 
-| Jahr | Pkw gesamt | davon E-Autos | E-Anteil | Plug-in-Hybrid | Vollhybrid |
+| Jahr | Pkw gesamt | davon E-Autos | E-Anteil | Plug-in-Hybrid | Hybrid inkl. Mild-Hybrid |
 |---|---:|---:|---:|---:|---:|
 | 2021 | 239.042 | 33.277 | 13,9 % | 6,1 % | 16,2 % |
 | 2022* | 214.394 | 34.149 | 15,9 % | 6,2 % | 19,2 % |

@@ -34,7 +34,7 @@ def test_top_models_by_drive_and_make(conn):
 
 @pytest.mark.parametrize(("fuel", "mode", "drive"), [
     ("electric", "E", "BEV"), ("petrol/electric", "P", "PHEV"), ("petrol/electric", "H", "HEV"),
-    ("petrol", "H", "HEV"),  # EEA reports many full hybrids as petrol with fuel mode H
+    ("petrol", "H", "HEV"),  # EEA reports many hybrids (full and mild) as petrol with fuel mode H
     ("diesel", "M", "ICE"),
 ])
 def test_drive_type_view(conn, fuel, mode, drive):

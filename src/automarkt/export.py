@@ -18,7 +18,7 @@ from .eea import PROVISIONAL
 DRIVES = [  # drive, German label, sort order in visuals
     ("BEV", "E-Auto", 1),
     ("PHEV", "Plug-in-Hybrid", 2),
-    ("HEV", "Vollhybrid", 3),
+    ("HEV", "Hybrid (inkl. Mild-Hybrid)", 3),  # EEA does not separate full and mild hybrids
     ("ICE", "Verbrenner", 4),
 ]
 

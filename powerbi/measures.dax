@@ -9,8 +9,9 @@ Zulassungen = SUM ( fact_registrations[regs] )
 E-Autos =
 CALCULATE ( [Zulassungen], dim_drive[drive] = "BEV" )
 
+// COALESCE: Marken ohne E-Autos (z. B. Mitsubishi) zeigen 0 % statt einer leeren Zelle.
 E-Anteil =
-DIVIDE ( [E-Autos], [Zulassungen] )
+DIVIDE ( COALESCE ( [E-Autos], 0 ), [Zulassungen] )
 
 Zulassungen Vorjahr =
 VAR Jahr = SELECTEDVALUE ( dim_year[year] )
@@ -35,3 +36,26 @@ DIVIDE (
            fact_registrations[consumption_wh_km] * fact_registrations[regs] ),
     CALCULATE ( [Zulassungen], NOT ISBLANK ( fact_registrations[consumption_wh_km] ) )
 )
+
+// Für das Dashboard (Top 10 E-Auto-Marken): Rang und Anteil nur unter E-Autos.
+Anteil an E-Autos =
+DIVIDE ( [E-Autos], CALCULATE ( [E-Autos], REMOVEFILTERS ( dim_make ) ) )
+
+Rang E-Auto-Marke =
+IF (
+    NOT ISBLANK ( [E-Autos] ),
+    RANKX ( ALL ( dim_make[brand] ), [E-Autos], , DESC, DENSE )
+)
+
+// Anteil je Antriebsart am Jahr (Beschriftung im 100-%-Säulendiagramm).
+Anteil Antrieb =
+DIVIDE ( [Zulassungen], CALCULATE ( [Zulassungen], REMOVEFILTERS ( dim_drive ) ) )
+
+// Text für die Wachstumskarte: 2021 hat keinen Vorjahreswert.
+Wachstum Karte =
+VAR W = [Wachstum ggü. Vorjahr]
+RETURN IF ( ISBLANK ( W ), "kein Vorjahr", FORMAT ( W, "+0.0 %;-0.0 %;0.0 %", "de-AT" ) )
+
+// Balkenfarbe per Feldwert: Fokusmarken farbig, alle anderen grau.
+Farbe Fokusmarke =
+IF ( SELECTEDVALUE ( dim_make[focus_brand] ) = "ja", "#0E7C86", "#B8C1CB" )

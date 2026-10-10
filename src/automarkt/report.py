@@ -64,7 +64,7 @@ def build(conn: sqlite3.Connection, out_dir: str | Path = "report", focus: tuple
 
     lines = [f"# Neuzulassungen in Österreich {min(years(conn))}–{last}", ""]
     lines += ["## Markt nach Antrieb", "",
-              "| Jahr | Pkw gesamt | davon E-Autos | E-Anteil | Plug-in-Hybrid | Vollhybrid |",
+              "| Jahr | Pkw gesamt | davon E-Autos | E-Anteil | Plug-in-Hybrid | Hybrid inkl. Mild-Hybrid |",
               "|---|---:|---:|---:|---:|---:|"]
     for r in market_overview(conn):
         lines.append(f"| {mark(r['year'])} | {_fmt(r['total'])} | {_fmt(r['bev'])} | {_pct(r['bev_share'])} "
