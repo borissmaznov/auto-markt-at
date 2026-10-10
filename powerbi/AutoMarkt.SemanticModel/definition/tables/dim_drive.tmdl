@@ -1,0 +1,43 @@
+table dim_drive
+	lineageTag: 3310df9d-1541-5fbd-bbc0-e5653f70eaa8
+
+	column drive
+		dataType: string
+		isHidden
+		lineageTag: 3e64ef73-0018-5ef3-af99-7efbea5a0c96
+		summarizeBy: none
+		sourceColumn: drive
+
+		annotation SummarizationSetBy = User
+
+	column drive_label
+		dataType: string
+		lineageTag: b4da4cdd-fa0f-5a9f-878e-3849a8e43028
+		summarizeBy: none
+		sourceColumn: drive_label
+		sortByColumn: drive_sort
+
+		annotation SummarizationSetBy = User
+
+	column drive_sort
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: bcabe44a-1c9b-54ae-90c0-dd81b3a108ee
+		summarizeBy: none
+		sourceColumn: drive_sort
+
+		annotation SummarizationSetBy = User
+
+	partition dim_drive = m
+		mode: import
+		source =
+				let
+				    Quelle = Csv.Document(Web.Contents("https://raw.githubusercontent.com/borissmaznov/auto-markt-at/main/powerbi/data/dim_drive.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    MitKopf = Table.PromoteHeaders(Quelle, [PromoteAllScalars = true]),
+				    Typen = Table.TransformColumnTypes(MitKopf, {{"drive", type text}, {"drive_label", type text}, {"drive_sort", Int64.Type}}, "en-US")
+				in
+				    Typen
+
+	annotation PBI_ResultType = Table
+

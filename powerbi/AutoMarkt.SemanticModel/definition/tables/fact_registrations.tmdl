@@ -1,0 +1,168 @@
+table fact_registrations
+	lineageTag: 1f0bc836-9b16-50a6-a84e-cd6834c313d8
+
+	measure Zulassungen = SUM ( fact_registrations[regs] )
+		formatString: #,0
+		lineageTag: dd1f8d87-4642-57b2-9577-c05528ca550d
+
+	measure E-Autos = CALCULATE ( [Zulassungen], dim_drive[drive] = "BEV" )
+		formatString: #,0
+		lineageTag: 7734726a-1cb7-51a5-a226-6e0332d193b7
+
+	measure E-Anteil = DIVIDE ( COALESCE ( [E-Autos], 0 ), [Zulassungen] )
+		formatString: 0.0 %
+		lineageTag: 2b47c9e8-5a90-51b6-83d0-956e0feb5585
+
+	measure 'Zulassungen Vorjahr' =
+			VAR Jahr = SELECTEDVALUE ( dim_year[year] )
+			RETURN
+			    CALCULATE ( [Zulassungen], REMOVEFILTERS ( dim_year ), dim_year[year] = Jahr - 1 )
+		formatString: #,0
+		lineageTag: c97c9640-e830-5774-9dcb-1ecf0998286a
+
+	measure 'Wachstum ggü. Vorjahr' = DIVIDE ( [Zulassungen] - [Zulassungen Vorjahr], [Zulassungen Vorjahr] )
+		formatString: +0.0 %;-0.0 %;0.0 %
+		lineageTag: a9b92928-98d7-521c-802a-b7d696de05c5
+
+	measure Marktanteil = DIVIDE ( [Zulassungen], CALCULATE ( [Zulassungen], REMOVEFILTERS ( dim_make ) ) )
+		formatString: 0.0 %
+		lineageTag: 28e03c7d-0ae1-5a84-9305-0355c4779d30
+
+	measure 'Rang Marke' =
+			IF (
+			    NOT ISBLANK ( [Zulassungen] ),
+			    RANKX ( ALL ( dim_make[brand] ), [Zulassungen], , DESC, DENSE )
+			)
+		formatString: 0
+		lineageTag: 768cbe23-4324-54cf-913c-370318646b2f
+
+	measure 'Anteil an E-Autos' = DIVIDE ( [E-Autos], CALCULATE ( [E-Autos], REMOVEFILTERS ( dim_make ) ) )
+		formatString: 0.0 %
+		lineageTag: ea7cf4af-635d-5e3b-b55d-5181ddadd88f
+
+	measure 'Rang E-Auto-Marke' =
+			IF (
+			    NOT ISBLANK ( [E-Autos] ),
+			    RANKX ( ALL ( dim_make[brand] ), [E-Autos], , DESC, DENSE )
+			)
+		formatString: 0
+		lineageTag: fa90cb3c-4f8f-53a8-b713-5637462191b6
+
+	measure 'Wachstum Karte' =
+			VAR W = [Wachstum ggü. Vorjahr]
+			RETURN IF ( ISBLANK ( W ), "kein Vorjahr", FORMAT ( W, "+0.0 %;-0.0 %;0.0 %", "de-AT" ) )
+		lineageTag: af6f40a6-5753-5667-9a4e-3f20e7a690e0
+
+	measure 'Anteil Antrieb' = DIVIDE ( [Zulassungen], CALCULATE ( [Zulassungen], REMOVEFILTERS ( dim_drive ) ) )
+		formatString: 0.0 %
+		lineageTag: 2c7526fb-acdf-5021-b929-62a23add041c
+
+	measure 'Farbe Fokusmarke' = IF ( SELECTEDVALUE ( dim_make[focus_brand] ) = "ja", "#0E7C86", "#B8C1CB" )
+		lineageTag: 51898502-83e3-5eb9-84f9-89c351ca5232
+
+	measure 'Ø Verbrauch Wh/km' =
+			DIVIDE (
+			    SUMX ( FILTER ( fact_registrations, NOT ISBLANK ( fact_registrations[consumption_wh_km] ) ),
+			           fact_registrations[consumption_wh_km] * fact_registrations[regs] ),
+			    CALCULATE ( [Zulassungen], NOT ISBLANK ( fact_registrations[consumption_wh_km] ) )
+			)
+		formatString: #,0
+		lineageTag: 663fad54-fd12-5428-9e6e-f1a3db719fe6
+
+	column year
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: b36c07aa-0c7b-5bd8-86d7-a9de4dd67314
+		summarizeBy: none
+		sourceColumn: year
+
+		annotation SummarizationSetBy = User
+
+	column make
+		dataType: string
+		isHidden
+		lineageTag: b05ec6e9-bec9-5129-86e7-f00e25688150
+		summarizeBy: none
+		sourceColumn: make
+
+		annotation SummarizationSetBy = User
+
+	column model
+		dataType: string
+		lineageTag: 5b548c3d-874a-50c1-97c1-1910c392227d
+		summarizeBy: none
+		sourceColumn: model
+
+		annotation SummarizationSetBy = User
+
+	column drive
+		dataType: string
+		isHidden
+		lineageTag: 6e182dae-37fc-5d7c-8f62-2d4ea4696d10
+		summarizeBy: none
+		sourceColumn: drive
+
+		annotation SummarizationSetBy = User
+
+	column fuel
+		dataType: string
+		lineageTag: 5936aa9d-754d-537a-a613-c53274114e79
+		summarizeBy: none
+		sourceColumn: fuel
+
+		annotation SummarizationSetBy = User
+
+	column regs
+		dataType: int64
+		formatString: #,0
+		lineageTag: 4b41d56c-2f0a-5619-8adc-675bc265fd38
+		summarizeBy: none
+		sourceColumn: regs
+
+		annotation SummarizationSetBy = User
+
+	column co2_g_km
+		dataType: double
+		lineageTag: ab9ed2e5-7a5e-58c4-ab74-a29aae2eff37
+		summarizeBy: none
+		sourceColumn: co2_g_km
+
+		annotation SummarizationSetBy = User
+
+	column power_kw
+		dataType: double
+		lineageTag: ab929ab7-50e7-5789-8032-d622c6a0ebc8
+		summarizeBy: none
+		sourceColumn: power_kw
+
+		annotation SummarizationSetBy = User
+
+	column mass_kg
+		dataType: double
+		lineageTag: d3e78158-df63-57f1-97bd-2c39af952273
+		summarizeBy: none
+		sourceColumn: mass_kg
+
+		annotation SummarizationSetBy = User
+
+	column consumption_wh_km
+		dataType: double
+		lineageTag: dbd2351b-7cbd-5390-a8a6-c7889bc1191b
+		summarizeBy: none
+		sourceColumn: consumption_wh_km
+
+		annotation SummarizationSetBy = User
+
+	partition fact_registrations = m
+		mode: import
+		source =
+				let
+				    Quelle = Csv.Document(Web.Contents("https://raw.githubusercontent.com/borissmaznov/auto-markt-at/main/powerbi/data/fact_registrations.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    MitKopf = Table.PromoteHeaders(Quelle, [PromoteAllScalars = true]),
+				    Typen = Table.TransformColumnTypes(MitKopf, {{"year", Int64.Type}, {"make", type text}, {"model", type text}, {"drive", type text}, {"fuel", type text}, {"regs", Int64.Type}, {"co2_g_km", type number}, {"power_kw", type number}, {"mass_kg", type number}, {"consumption_wh_km", type number}}, "en-US")
+				in
+				    Typen
+
+	annotation PBI_ResultType = Table
+

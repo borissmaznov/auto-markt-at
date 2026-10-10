@@ -1,0 +1,49 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
+  "name": "titel",
+  "position": {
+    "z": 1,
+    "tabOrder": 1,
+    "x": 20,
+    "y": 4,
+    "width": 800,
+    "height": 76
+  },
+  "visual": {
+    "visualType": "textbox",
+    "drillFilterOtherVisuals": true,
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Auto-Markt Österreich · Pkw-Neuzulassungen 2021–2025*",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "fontSize": "20pt",
+                      "color": "#24292F"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Fokus: Importmarken Hyundai, MG, BYD, Mitsubishi · Quelle: EEA, CO₂-Monitoring der Neuwagen · * 2022 und 2025 vorläufig",
+                    "textStyle": {
+                      "fontSize": "10pt",
+                      "color": "#57606A"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

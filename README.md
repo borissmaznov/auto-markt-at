@@ -44,12 +44,23 @@ flowchart LR
 
 ## Power BI
 
-Die bereinigten Daten liegen zusätzlich als Sternschema unter [powerbi/data](powerbi/data): die Faktentabelle
+![Power-BI-Dashboard: Pkw-Neuzulassungen 2021–2025*](powerbi/dashboard.png)
+
+Das Dashboard ist ein Power-BI-Projekt (PBIP): [powerbi/AutoMarkt.pbip](powerbi/AutoMarkt.pbip) in Power BI Desktop
+öffnen, Webquelle mit „Anonym“ zulassen und „Aktualisieren“ – die Daten kommen direkt aus diesem Repository.
+Semantisches Modell (TMDL) und Bericht (PBIR) sind Textdateien und damit in Git versionierbar.
+
+- **Bericht:** Jahres-Slicer (immer genau ein Jahr ausgewählt), Kennzahlen, Antriebsmix 2021–2025\*,
+  Top 10 E-Auto-Marken mit farbig markierten Fokusmarken (bedingte Formatierung über ein Measure),
+  Matrix der Fokusmarken und Kernaussagen.
+- **Interaktionen:** Der Slicer filtert Kennzahlen und Top 10; Antriebsmix und Matrix zeigen bewusst alle Jahre.
+
+Die bereinigten Daten liegen als Sternschema unter [powerbi/data](powerbi/data): die Faktentabelle
 `fact_registrations` (Jahr × Marke × Modell × Antrieb) und die Dimensionen `dim_make` (mit Kennzeichen für die
 Fokusmarken), `dim_year` (vorläufige Jahre markiert) und `dim_drive`.
 [powerbi/load.pq](powerbi/load.pq) lädt sie per Power Query direkt aus diesem Repository;
 [powerbi/measures.dax](powerbi/measures.dax) enthält die Measures: E-Anteil, Wachstum ggü. Vorjahr, Marktanteil,
-Rang und den verbrauchsgewichteten Durchschnittsverbrauch; [powerbi/theme.json](powerbi/theme.json) übernimmt die
+Rang (RANKX), Anteil je Antriebsart, die Farbe für die Fokusmarken und den verbrauchsgewichteten Durchschnittsverbrauch; [powerbi/theme.json](powerbi/theme.json) übernimmt die
 Farben des Berichts. `automarkt export-powerbi` erzeugt die Dateien neu.
 
 ## Datenqualität

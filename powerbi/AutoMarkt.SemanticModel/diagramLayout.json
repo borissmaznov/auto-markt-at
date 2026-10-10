@@ -1,0 +1,74 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 0,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 577.84597416290035,
+            "y": 507.88656123902751
+          },
+          "nodeIndex": "dim_drive",
+          "nodeLineageTag": "3310df9d-1541-5fbd-bbc0-e5653f70eaa8",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 50,
+            "y": 90.102675208906476
+          },
+          "nodeIndex": "dim_make",
+          "nodeLineageTag": "151bc224-7694-5d0d-aa0b-a32a2a12a7db",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 421.02407886996866,
+            "y": -50
+          },
+          "nodeIndex": "dim_year",
+          "nodeLineageTag": "331c47f1-9659-5469-a5e1-8a9fbf86978e",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 335.52076473524363,
+            "y": 154.96780837595733
+          },
+          "nodeIndex": "fact_registrations",
+          "nodeLineageTag": "1f0bc836-9b16-50a6-a84e-cd6834c313d8",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "Все таблицы",
+      "zoomValue": 100,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "Все таблицы",
+  "defaultDiagram": "Все таблицы"
+}

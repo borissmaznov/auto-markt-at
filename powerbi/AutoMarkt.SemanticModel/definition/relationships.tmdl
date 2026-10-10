@@ -1,0 +1,12 @@
+relationship 5a8f2176-7c35-5418-aeb3-89faf9cccfa4
+	fromColumn: fact_registrations.year
+	toColumn: dim_year.year
+
+relationship 39423be7-adec-54ea-bbd5-b742cd2918e7
+	fromColumn: fact_registrations.make
+	toColumn: dim_make.make
+
+relationship 78cb57a9-8657-5b05-80fc-4eb4c6ba13f0
+	fromColumn: fact_registrations.drive
+	toColumn: dim_drive.drive
+

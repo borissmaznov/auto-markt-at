@@ -1,0 +1,20 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "uebersicht",
+  "displayName": "Übersicht",
+  "displayOption": "FitToPage",
+  "height": 784,
+  "width": 1280,
+  "visualInteractions": [
+    {
+      "source": "jahr",
+      "target": "antriebsmix",
+      "type": "NoFilter"
+    },
+    {
+      "source": "jahr",
+      "target": "fokusmarken",
+      "type": "NoFilter"
+    }
+  ]
+}

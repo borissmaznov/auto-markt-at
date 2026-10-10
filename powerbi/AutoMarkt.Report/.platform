@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "AutoMarkt"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "69f3db09-d3b6-58c6-bbfc-26bb92b0ca59"
+  }
+}

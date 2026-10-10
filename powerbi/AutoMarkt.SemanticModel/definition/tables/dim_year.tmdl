@@ -1,0 +1,44 @@
+table dim_year
+	lineageTag: 331c47f1-9659-5469-a5e1-8a9fbf86978e
+
+	column year
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: fda77ce0-be75-5fb4-affa-46afdd625f18
+		summarizeBy: none
+		sourceColumn: year
+
+		annotation SummarizationSetBy = User
+
+	column year_label
+		dataType: string
+		lineageTag: 6325cd9e-0d65-5652-afa0-8ae608175881
+		summarizeBy: none
+		sourceColumn: year_label
+		sortByColumn: year
+
+		annotation SummarizationSetBy = User
+
+	column provisional
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 641e10cc-7a3a-5243-bead-38adca09c457
+		summarizeBy: none
+		sourceColumn: provisional
+
+		annotation SummarizationSetBy = User
+
+	partition dim_year = m
+		mode: import
+		source =
+				let
+				    Quelle = Csv.Document(Web.Contents("https://raw.githubusercontent.com/borissmaznov/auto-markt-at/main/powerbi/data/dim_year.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    MitKopf = Table.PromoteHeaders(Quelle, [PromoteAllScalars = true]),
+				    Typen = Table.TransformColumnTypes(MitKopf, {{"year", Int64.Type}, {"year_label", type text}, {"provisional", Int64.Type}}, "en-US")
+				in
+				    Typen
+
+	annotation PBI_ResultType = Table
+

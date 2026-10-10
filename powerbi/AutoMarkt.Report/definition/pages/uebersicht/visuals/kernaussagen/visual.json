@@ -1,0 +1,106 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
+  "name": "kernaussagen",
+  "position": {
+    "z": 50,
+    "tabOrder": 50,
+    "x": 20,
+    "y": 648,
+    "width": 1240,
+    "height": 128
+  },
+  "visual": {
+    "visualType": "textbox",
+    "drillFilterOtherVisuals": true,
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Kernaussagen 2021–2025*",
+                    "textStyle": {
+                      "fontSize": "12pt",
+                      "color": "#24292F",
+                      "fontWeight": "bold"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "BYD: ",
+                    "textStyle": {
+                      "fontSize": "10.5pt",
+                      "color": "#24292F",
+                      "fontWeight": "bold"
+                    }
+                  },
+                  {
+                    "value": "erst seit 2023 am Markt, 2025* bereits 6.895 Neuzulassungen (+75 %) und Platz 5 bei E-Autos (5.258).",
+                    "textStyle": {
+                      "fontSize": "10.5pt",
+                      "color": "#24292F"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "MG: ",
+                    "textStyle": {
+                      "fontSize": "10.5pt",
+                      "color": "#24292F",
+                      "fontWeight": "bold"
+                    }
+                  },
+                  {
+                    "value": "Zulassungen +36 % (2025*), aber der E-Anteil fiel von 82 % (2023) auf 8 %. Das Wachstum kommt von Hybriden (ZS Hybrid+, MG3 Hybrid+, HS Plug-in) – zeitgleich mit den EU-Zöllen auf E-Autos aus China.",
+                    "textStyle": {
+                      "fontSize": "10.5pt",
+                      "color": "#24292F"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Markt: ",
+                    "textStyle": {
+                      "fontSize": "10.5pt",
+                      "color": "#24292F",
+                      "fontWeight": "bold"
+                    }
+                  },
+                  {
+                    "value": "E-Anteil 13,9 % → 21,3 %, Hybride (inkl. Mild-Hybrid) 16,2 % → 29,2 %, Verbrenner 63,7 % → 39,3 %.",
+                    "textStyle": {
+                      "fontSize": "10.5pt",
+                      "color": "#24292F"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Abgleich mit Statistik Austria: Jahressumme 2024 −0,4 %, 2025 −0,2 %. Leere Zellen in der Tabelle: Marke noch nicht am Markt bzw. kein Vorjahreswert.",
+                    "textStyle": {
+                      "fontSize": "9pt",
+                      "color": "#57606A"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}
